@@ -4,7 +4,7 @@ import Footer from "../../Components/Footer/Footer";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="bg-[radial-gradient] from-gray-900 to-gray-600 bg-gradient-to-r text-white">
       <Navbar />
       <Outlet />
       <Footer />
