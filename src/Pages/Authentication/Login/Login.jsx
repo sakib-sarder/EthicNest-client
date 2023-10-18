@@ -2,28 +2,30 @@ import { Link } from "react-router-dom";
 import loginBanner from "../../../assets/login_banner.jpg";
 import HomeIcon from "@mui/icons-material/Home";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import facebookLogo from "../../../assets/facebook_logo.png";
+import googleLogo from "../../../assets/google_logo.png";
 import { useState } from "react";
 
 const Login = () => {
-  const [showPass, setShowPass] = useState(false)
+  const [showPass, setShowPass] = useState(false);
   return (
     <section className="h-[100vh] flex items-center justify-center gap-4 w-4/5 container mx-auto">
       {/* Login Banner */}
-      <div className="w-1/2 lg:w-1/3">
-        <img src={loginBanner} alt="login banner" />
+      <div className="w-5/6 lg:w-1/3 hidden md:block">
+        <img src={loginBanner} alt="login banner"/>
       </div>
       {/* Right side */}
-      <div className="w-1/2 lg:w-1/3">
+      <div className="w-full md:w-1/2 lg:w-1/3">
         <Link to="/" className="flex items-center justify-end ">
           <div className="bg-blue-600 flex items-center justify-center text-white px-2 py-1.5 rounded-sm ">
             <HomeIcon />
             <span>Home</span>
           </div>
         </Link>
-        <div className="flex flex-col gap-2 pb-6">
-          <p className="capitalize text-[1.5rem] font-bold">
-            Login to your account
+        <div className="flex flex-col gap-2 pb-2">
+          <p className="capitalize tracking-wide text-[1.5rem] font-bold">
+            Login to your account!
           </p>
           <p className="text-sm">
             Don&apos;t have an account yet?{" "}
@@ -70,8 +72,11 @@ const Login = () => {
                 className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
                 placeholder="Enter Password"
               />
-              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-4 text-gray-600"  onClick={()=>setShowPass(!showPass)}>
-                {showPass? <VisibilityIcon /> : <VisibilityOffIcon/>}
+              <div
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-4 text-gray-600"
+                onClick={() => setShowPass(!showPass)}
+              >
+                {showPass ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </div>
             </div>
           </div>
@@ -84,8 +89,28 @@ const Login = () => {
             />
           </div>
         </form>
+        {/* Social login */}
+        <div>
+          <div className="flex items-center py-0 lg:py-4">
+            <hr className="flex-grow border-t border-gray-400"></hr>
+            <span className="mx-2 capitalize font-semibold">or login with</span>
+            <hr className="flex-grow border-t border-gray-400"></hr>
+          </div>
+          {/* Icons */}
+          <div className="flex justify-center gap-2 lg:gap-4">
+            {/* Google */}
+            <button className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-red-300">
+              <img src={googleLogo} alt="google logo" className="w-7" />
+              <span className="text-red-500 font-semibold text-lg">Google</span>
+            </button>
+            {/* Facebook */}
+            <button className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-blue-400">
+              <img src={facebookLogo} alt="google logo" className="w-7" />
+              <span className="text-blue-500 font-semibold text-lg">Facebook</span>
+            </button>
+          </div>
+        </div>
       </div>
-      {/*  */}
     </section>
   );
 };
