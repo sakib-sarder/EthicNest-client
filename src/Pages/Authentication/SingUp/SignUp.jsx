@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginBanner from "../../../assets/login_banner.jpg";
 import HomeIcon from "@mui/icons-material/Home";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -7,9 +7,13 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const SignUp = () => {
-  const {createUser, updateUserInfo, setReload} = useContext(AuthContext);
+  const { createUser, updateUserInfo, setReload } = useContext(AuthContext);
 
   const [showPass, setShowPass] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -17,16 +21,14 @@ const SignUp = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const confirmPassword = event.target.confirmPassword.value;
-    console.log(fullName, email, password, confirmPassword);
-    if(password === confirmPassword){
-      createUser(email, password)
-      .then(result=>{
-        updateUserInfo(fullName)
-        .then(()=>{
+    if (password === confirmPassword) {
+      createUser(email, password).then((result) => {
+        updateUserInfo(fullName).then(() => {
           setReload(true);
-          console.log(result)
-        })
-      })
+          navigate(from, { replace: true });
+          console.log(result);
+        });
+      });
     }
   };
 
