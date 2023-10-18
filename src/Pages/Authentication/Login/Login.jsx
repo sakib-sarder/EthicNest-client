@@ -10,7 +10,7 @@ import { useState } from "react";
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   return (
-    <section className="h-[100vh] flex items-center justify-center gap-4 w-4/5 container mx-auto">
+    <section className="h-[100vh] flex items-center justify-center gap-4 w-4/5 container mx-auto" id="login_parent">
       {/* Login Banner */}
       <div className="w-5/6 lg:w-1/3 hidden md:block">
         <img src={loginBanner} alt="login banner"/>

@@ -3,12 +3,33 @@ import loginBanner from "../../../assets/login_banner.jpg";
 import HomeIcon from "@mui/icons-material/Home";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-// import facebookLogo from "../../../assets/facebook_logo.png";
-// import googleLogo from "../../../assets/google_logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const SignUp = () => {
+  const {createUser, updateUserInfo, setReload} = useContext(AuthContext);
+
   const [showPass, setShowPass] = useState(false);
+
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    const fullName = event.target.fullName.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const confirmPassword = event.target.confirmPassword.value;
+    console.log(fullName, email, password, confirmPassword);
+    if(password === confirmPassword){
+      createUser(email, password)
+      .then(result=>{
+        updateUserInfo(fullName)
+        .then(()=>{
+          setReload(true);
+          console.log(result)
+        })
+      })
+    }
+  };
+
   return (
     <section className="h-[100vh] flex items-center flex-row-reverse justify-center gap-4 w-4/5 container mx-auto">
       {/* SignUp Banner */}
@@ -35,7 +56,7 @@ const SignUp = () => {
           </p>
         </div>
         {/* Form */}
-        <form className="flex flex-col gap-1">
+        <form className="flex flex-col gap-1" onSubmit={handleSignUp}>
           {/* Name */}
           <div className="">
             <label
@@ -61,6 +82,7 @@ const SignUp = () => {
               Email Address
             </label>
             <input
+              name="email"
               id="email"
               type="email"
               className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
@@ -105,7 +127,7 @@ const SignUp = () => {
             </div>
             <div className="relative">
               <input
-                name="password"
+                name="confirmPassword"
                 id="confirmPassword"
                 type={showPass ? "text" : "password"}
                 className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
@@ -124,7 +146,7 @@ const SignUp = () => {
             <input
               type="submit"
               value="Register Now"
-              className="bg-blue-600  py-1.5 text-xl font-bold tracking-wider text-white rounded-[5px] w-full"
+              className="bg-blue-600  py-1.5 text-xl font-bold tracking-wider text-white rounded-[5px] w-full cursor-pointer"
             />
           </div>
         </form>
