@@ -3,17 +3,17 @@ import loginBanner from "../../../assets/login_banner.jpg";
 import HomeIcon from "@mui/icons-material/Home";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import facebookLogo from "../../../assets/facebook_logo.png";
-import googleLogo from "../../../assets/google_logo.png";
+// import facebookLogo from "../../../assets/facebook_logo.png";
+// import googleLogo from "../../../assets/google_logo.png";
 import { useState } from "react";
 
-const Login = () => {
+const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
   return (
-    <section className="h-[100vh] flex items-center justify-center gap-4 w-4/5 container mx-auto">
-      {/* Login Banner */}
+    <section className="h-[100vh] flex items-center flex-row-reverse justify-center gap-4 w-4/5 container mx-auto">
+      {/* SignUp Banner */}
       <div className="w-5/6 lg:w-1/3 hidden md:block">
-        <img src={loginBanner} alt="login banner"/>
+        <img src={loginBanner} alt="login banner" />
       </div>
       {/* Right side */}
       <div className="w-full md:w-1/2 lg:w-1/3 border-[1px] px-2 py-8 md:px-0 md:py-0 border-black rounded-md md:rounded-none md:border-none">
@@ -25,17 +25,33 @@ const Login = () => {
         </Link>
         <div className="flex flex-col gap-2 pb-2">
           <p className="capitalize tracking-wide text-[1.5rem] font-bold">
-            Login to your account!
+            Register Now!
           </p>
           <p className="text-sm">
-            Don&apos;t have an account yet?{" "}
-            <Link to="/signup" className="underline text-blue-500">
-              Sign Up
+            Already have an account?{" "}
+            <Link to="/login" className="underline text-blue-500">
+              Login
             </Link>
           </p>
         </div>
         {/* Form */}
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-1">
+          {/* Name */}
+          <div className="">
+            <label
+              htmlFor="fullName"
+              className="text-sm font-medium tracking-wider"
+            >
+              Full Name
+            </label>
+            <input
+              name="fullName"
+              id="fullName"
+              type="text"
+              className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
+              placeholder="John Doe"
+            />
+          </div>
           {/* Email */}
           <div className="">
             <label
@@ -53,16 +69,13 @@ const Login = () => {
           </div>
           {/* Password */}
           <div className="">
-            <div className="flex justify-between pb-1">
+            <div className="pb-1">
               <label
                 htmlFor="password"
                 className="text-sm font-medium tracking-wider"
               >
                 Password
               </label>
-              <span className="text-sm font-medium tracking-wider text-red-400 cursor-pointer">
-                Forget Password?
-              </span>
             </div>
             <div className="relative">
               <input
@@ -80,39 +93,44 @@ const Login = () => {
               </div>
             </div>
           </div>
-          {/* Submit Button */}
+          {/*Confirm Password */}
           <div className="">
+            <div className="pb-1">
+              <label
+                htmlFor="confirmPassword"
+                className="text-sm font-medium tracking-wider"
+              >
+                Confirm Password
+              </label>
+            </div>
+            <div className="relative">
+              <input
+                name="password"
+                id="confirmPassword"
+                type={showPass ? "text" : "password"}
+                className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
+                placeholder="Enter Password"
+              />
+              <div
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-4 text-gray-600"
+                onClick={() => setShowPass(!showPass)}
+              >
+                {showPass ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </div>
+            </div>
+          </div>
+          {/* Submit Button */}
+          <div className="pt-3">
             <input
               type="submit"
-              value="Login Now"
+              value="Register Now"
               className="bg-blue-600  py-1.5 text-xl font-bold tracking-wider text-white rounded-[5px] w-full"
             />
           </div>
         </form>
-        {/* Social login */}
-        <div>
-          <div className="flex items-center py-0 lg:py-4">
-            <hr className="flex-grow border-t border-gray-400"></hr>
-            <span className="mx-2 capitalize font-semibold">or login with</span>
-            <hr className="flex-grow border-t border-gray-400"></hr>
-          </div>
-          {/* Icons */}
-          <div className="flex justify-center gap-2 lg:gap-4">
-            {/* Google */}
-            <button className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-red-300">
-              <img src={googleLogo} alt="google logo" className="w-7" />
-              <span className="text-red-500 font-semibold text-lg">Google</span>
-            </button>
-            {/* Facebook */}
-            <button className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-blue-400">
-              <img src={facebookLogo} alt="google logo" className="w-7" />
-              <span className="text-blue-500 font-semibold text-lg">Facebook</span>
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );
 };
 
-export default Login;
+export default SignUp;
