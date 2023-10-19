@@ -1,4 +1,5 @@
 import {
+  FacebookAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -21,6 +22,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(null);
 
+  const facebookProvider = new FacebookAuthProvider();
   const googleProvider = new GoogleAuthProvider();
 
   // create user with email and password
@@ -40,6 +42,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
+
+  // Sign in with facebook
+  const signInWithFacebook = () =>{
+    setLoading(true);
+    return signInWithPopup(auth, facebookProvider);
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -74,6 +82,7 @@ const AuthProvider = ({ children }) => {
     updateUserInfo,
     LoginWithEmailPassword,
     signInWithGoogle,
+    signInWithFacebook,
     logOut
   };
   return (

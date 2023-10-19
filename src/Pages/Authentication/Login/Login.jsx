@@ -10,7 +10,8 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { LoginWithEmailPassword, signInWithGoogle } = useContext(AuthContext);
+  const { LoginWithEmailPassword, signInWithGoogle, signInWithFacebook } =
+    useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -50,6 +51,15 @@ const Login = () => {
       toast.success(`Welcome ${result?.user?.displayName}`);
     });
   };
+
+  // Facebook login
+  const handleFacebook = () => {
+    signInWithFacebook().then((result) => {
+      navigate(from, { replace: true });
+      toast.success(`Welcome ${result?.user?.displayName}`);
+    });
+  };
+
   return (
     <section
       className="h-[100vh] flex items-center justify-center gap-4 w-4/5 container mx-auto"
@@ -155,7 +165,10 @@ const Login = () => {
               <span className="text-red-500 font-semibold text-lg">Google</span>
             </button>
             {/* Facebook */}
-            <button className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-blue-400">
+            <button
+              className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-blue-400"
+              onClick={handleFacebook}
+            >
               <img src={facebookLogo} alt="google logo" className="w-7" />
               <span className="text-blue-500 font-semibold text-lg">
                 Facebook
