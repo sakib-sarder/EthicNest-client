@@ -4,10 +4,19 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useContext } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { AuthContext } from "../../Provider/AuthProvider";
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import SettingsIcon from '@mui/icons-material/Settings';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  
+  const handleLogout = ()=>{
+    
+  }
   return (
     <>
       {/* Large Device laptop or avobe */}
@@ -41,9 +50,40 @@ const Navbar = () => {
                 <button className="bg-[#1976D2] text-white px-[0.25rem] py-[0.25rem] rounded">
                   <PersonIcon style={{ fontSize: "1.8rem" }} />
                 </button>
-                <div className="opacity-0 invisible w-24 text-white text-center text-xs py-2 absolute z-10 right-24 top-8 transition-all duration-300 transform translate-x-1/2 group-hover:opacity-100 group-hover:visible">
-                  <div className="bg-[#1976D2] py-1 text-[0.85rem] rounded-sm tracking-wider font-semibold">
-                    {user?.displayName}
+                <div className="opacity-0 invisible w-60 text-white text-center text-xs py-2 absolute z-10 right-24 top-[39px] transition-all duration-300 transform translate-x-1/2 group-hover:opacity-100 group-hover:visible border rounded-md bg-white">
+                  <div className="text-black py-1 text-[0.85rem] rounded-sm tracking-wider font-semibold p-1">
+                    {/* On hover menu of avatar */}
+                    <div>
+                      <PersonIcon style={{fontSize: "3rem"}} className="border rounded-full p-1 mt-1"/>
+                      <div className="pt-3">
+                        <ul className="capitalize space-y-2.5 tracking-wider">
+                          <li className="avatar_menu">
+                            <ManageAccountsIcon/>
+                            <span className="">Manage my account</span>
+                          </li>
+                          <li className="avatar_menu">
+                            <LocalMallIcon/>
+                            <span className="">My orders</span>
+                          </li>
+                          <li className="avatar_menu">
+                            <FavoriteBorderIcon/>
+                            <span className="">My wishlist</span>
+                          </li>
+                          <li className="avatar_menu">
+                            <StarOutlineIcon/>
+                            <span className="">My ratings</span>
+                          </li>
+                          <li className="avatar_menu">
+                            <SettingsIcon/>
+                            <span className="">settings</span>
+                          </li>
+                          <li className="avatar_menu" onClick={handleLogout}>
+                            <LogoutIcon/>
+                            <span>Logout</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
