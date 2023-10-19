@@ -1,19 +1,54 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginBanner from "../../../assets/login_banner.jpg";
 import HomeIcon from "@mui/icons-material/Home";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import facebookLogo from "../../../assets/facebook_logo.png";
 import googleLogo from "../../../assets/google_logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Login = () => {
+  const { LoginWithEmailPassword } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  console.log(error);
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    // console.log(email, password)
+    LoginWithEmailPassword(email, password)
+      .then((result) => {
+        console.log(result.user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error, "line 31")
+        if (
+          error.code === "auth/wrong-password" ||
+          error.code === "auth/user-not-found" ||
+          error.code === "auth/invalid-login-credentials"
+        ) {
+          setError("Invalid email or password");
+          return;
+        } else {
+          setError("");
+        }
+      });
+  };
   return (
-    <section className="h-[100vh] flex items-center justify-center gap-4 w-4/5 container mx-auto" id="login_parent">
+    <section
+      className="h-[100vh] flex items-center justify-center gap-4 w-4/5 container mx-auto"
+      id="login_parent"
+    >
       {/* Login Banner */}
       <div className="w-5/6 lg:w-1/3 hidden md:block">
-        <img src={loginBanner} alt="login banner"/>
+        <img src={loginBanner} alt="login banner" />
       </div>
       {/* Right side */}
       <div className="w-full md:w-1/2 lg:w-1/3 border-[1px] px-2 py-8 md:px-0 md:py-0 border-black rounded-md md:rounded-none md:border-none">
@@ -35,7 +70,7 @@ const Login = () => {
           </p>
         </div>
         {/* Form */}
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleLogin}>
           {/* Email */}
           <div className="">
             <label
@@ -45,6 +80,7 @@ const Login = () => {
               Email Address
             </label>
             <input
+              name="email"
               id="email"
               type="email"
               className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
@@ -85,7 +121,7 @@ const Login = () => {
             <input
               type="submit"
               value="Login Now"
-              className="bg-blue-600  py-1.5 text-xl font-bold tracking-wider text-white rounded-[5px] w-full"
+              className="bg-blue-600  py-1.5 text-xl font-bold tracking-wider text-white rounded-[5px] w-full cursor-pointer"
             />
           </div>
         </form>
@@ -106,7 +142,9 @@ const Login = () => {
             {/* Facebook */}
             <button className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-blue-400">
               <img src={facebookLogo} alt="google logo" className="w-7" />
-              <span className="text-blue-500 font-semibold text-lg">Facebook</span>
+              <span className="text-blue-500 font-semibold text-lg">
+                Facebook
+              </span>
             </button>
           </div>
         </div>
