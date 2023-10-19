@@ -10,14 +10,14 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { LoginWithEmailPassword } = useContext(AuthContext);
+  const { LoginWithEmailPassword, signInWithGoogle } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  console.log(error);
+  // Email password login
   const handleLogin = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
@@ -27,10 +27,10 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         navigate(from, { replace: true });
-        toast.success(`Welcome Back ${result?.user?.displayName}`)
+        toast.success(`Welcome Back ${result?.user?.displayName}`);
       })
       .catch((error) => {
-        console.log(error, "line 31")
+        console.log(error, "line 31");
         if (
           error.code === "auth/wrong-password" ||
           error.code === "auth/user-not-found" ||
@@ -42,6 +42,13 @@ const Login = () => {
           setError("");
         }
       });
+  };
+  // Google login
+  const handleGoogle = () => {
+    signInWithGoogle().then((result) => {
+      navigate(from, { replace: true });
+      toast.success(`Welcome ${result?.user?.displayName}`);
+    });
   };
   return (
     <section
@@ -117,6 +124,9 @@ const Login = () => {
                 {showPass ? <VisibilityIcon /> : <VisibilityOffIcon />}
               </div>
             </div>
+            <p className="text-xs text-right text-red-500 font-semibold">
+              {error}
+            </p>
           </div>
           {/* Submit Button */}
           <div className="">
@@ -137,7 +147,10 @@ const Login = () => {
           {/* Icons */}
           <div className="flex justify-center gap-2 lg:gap-4">
             {/* Google */}
-            <button className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-red-300">
+            <button
+              className="border-2 flex items-center gap-1 lg:gap-2 px-2 py-1 border-red-300"
+              onClick={handleGoogle}
+            >
               <img src={googleLogo} alt="google logo" className="w-7" />
               <span className="text-red-500 font-semibold text-lg">Google</span>
             </button>
