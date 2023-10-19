@@ -4,19 +4,21 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useContext } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { AuthContext } from "../../Provider/AuthProvider";
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
-import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import SettingsIcon from '@mui/icons-material/Settings';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LogoutIcon from '@mui/icons-material/Logout';
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import SettingsIcon from "@mui/icons-material/Settings";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
-  
-  const handleLogout = ()=>{
-    
-  }
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error.message));
+  };
   return (
     <>
       {/* Large Device laptop or avobe */}
@@ -54,32 +56,50 @@ const Navbar = () => {
                   <div className="text-black py-1 text-[0.85rem] rounded-sm tracking-wider font-semibold p-1">
                     {/* On hover menu of avatar */}
                     <div>
-                      <PersonIcon style={{fontSize: "3rem"}} className="border rounded-full p-1 mt-1"/>
+                      <PersonIcon
+                        style={{ fontSize: "3rem" }}
+                        className="border rounded-full p-1 mt-1"
+                      />
                       <div className="pt-3">
                         <ul className="capitalize space-y-2.5 tracking-wider">
                           <li className="avatar_menu">
-                            <ManageAccountsIcon/>
-                            <span className="">Manage my account</span>
+                            <button className="flex items-center">
+                              <ManageAccountsIcon />
+                              <span className="">Manage my account</span>
+                            </button>
                           </li>
                           <li className="avatar_menu">
-                            <LocalMallIcon/>
-                            <span className="">My orders</span>
+                            <button className="flex items-center">
+                              <LocalMallIcon />
+                              <span className="">My orders</span>
+                            </button>
                           </li>
                           <li className="avatar_menu">
-                            <FavoriteBorderIcon/>
-                            <span className="">My wishlist</span>
+                            <button className="flex items-center">
+                              <FavoriteBorderIcon />
+                              <span className="">My wishlist</span>
+                            </button>
                           </li>
                           <li className="avatar_menu">
-                            <StarOutlineIcon/>
-                            <span className="">My ratings</span>
+                            <button className="flex items-center">
+                              <StarOutlineIcon />
+                              <span className="">My ratings</span>
+                            </button>
                           </li>
                           <li className="avatar_menu">
-                            <SettingsIcon/>
-                            <span className="">settings</span>
+                            <button className="flex items-center">
+                              <SettingsIcon />
+                              <span className="">settings</span>
+                            </button>
                           </li>
-                          <li className="avatar_menu" onClick={handleLogout}>
-                            <LogoutIcon/>
-                            <span>Logout</span>
+                          <li className="avatar_menu">
+                            <button
+                              className="flex items-center"
+                              onClick={handleLogout}
+                            >
+                              <LogoutIcon />
+                              <span>Logout</span>
+                            </button>
                           </li>
                         </ul>
                       </div>
@@ -95,8 +115,10 @@ const Navbar = () => {
                 </button>
               </Link>
             )}
-            <div className="bg-[#1976D2] text-white py-[0.29rem] px-1.5 rounded-sm">
+            {/* Shopping Cart */}
+            <div className="bg-[#1976D2] text-white py-[0.29rem] px-1.5 rounded-sm ">
               <ShoppingCartIcon />
+              <sup className="text-sm font-bold">0</sup>
             </div>
           </div>
         </div>

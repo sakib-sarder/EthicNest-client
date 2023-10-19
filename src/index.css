@@ -9,5 +9,5 @@
 }
 
 .avatar_menu {
-    @apply flex items-center gap-[2px] cursor-pointer hover:bg-gray-200 py-1 hover:ps-1 transition-all rounded
+    @apply cursor-pointer hover:bg-gray-200 py-1 hover:ps-1 transition-all rounded 
 }
