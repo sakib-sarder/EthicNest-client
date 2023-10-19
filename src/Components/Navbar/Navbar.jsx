@@ -92,10 +92,9 @@ const Navbar = () => {
                               <span className="">settings</span>
                             </button>
                           </li>
-                          <li className="avatar_menu">
+                          <li className="avatar_menu" onClick={handleLogout}>
                             <button
                               className="flex items-center"
-                              onClick={handleLogout}
                             >
                               <LogoutIcon />
                               <span>Logout</span>

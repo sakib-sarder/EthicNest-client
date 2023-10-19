@@ -7,6 +7,7 @@ import facebookLogo from "../../../assets/facebook_logo.png";
 import googleLogo from "../../../assets/google_logo.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { LoginWithEmailPassword } = useContext(AuthContext);
@@ -26,6 +27,7 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         navigate(from, { replace: true });
+        toast.success(`Welcome Back ${result?.user?.displayName}`)
       })
       .catch((error) => {
         console.log(error, "line 31")
