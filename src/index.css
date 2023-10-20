@@ -11,7 +11,3 @@
 .avatar_menu {
   @apply cursor-pointer hover:bg-gray-200 py-1 hover:ps-1 transition-all rounded;
 }
-
-/* .swiper-custom-bullet {
-  @apply bg-blue-500 rounded-full w-3 h-3;
-} */
