@@ -1,5 +1,4 @@
 import Banner from "./Banner/Banner";
-import Slider from "./Banner/Slider";
 
 const Home = () => {
   return (
