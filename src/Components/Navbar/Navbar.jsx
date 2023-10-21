@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <>
       {/* Large Device laptop or avobe */}
-      <nav className="bg-gray-300 py-1.5 px-2 md:py-0">
+      <nav className="bg-[#BEDDFF] py-1.5 px-2 md:py-0">
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <div>
@@ -131,7 +131,7 @@ const Navbar = () => {
               </Link>
             )}
             {/* Shopping Cart */}
-            <div className="bg-[#1976D2] text-white py-[0.29rem] px-1.5 rounded-sm ">
+            <div className="bg-[#1976D2] text-white py-[0.29rem] px-1.5 rounded-sm cursor-pointer">
               <ShoppingCartIcon />
               <sup className="text-sm font-bold">0</sup>
             </div>
