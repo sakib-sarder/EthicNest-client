@@ -8,7 +8,7 @@ import HealingIcon from "@mui/icons-material/Healing";
 import StoreIcon from "@mui/icons-material/Store";
 import WatchIcon from "@mui/icons-material/Watch";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+// import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 const Categories = () => {
   return (
     <div className="border rounded px-1 py-2 shadow-md">
@@ -18,16 +18,11 @@ const Categories = () => {
         <p>Categories</p>
       </div>
       {/* All categories */}
-      <div className="border rounded-b  text-sm font-semibold tracking-wider shadow-lg mt-1 space-y-2 grid grid-cols-3 lg:grid-cols-1">
+      <div className="border rounded-b  text-sm font-semibold tracking-wider shadow-lg mt-1 gap-1 grid grid-cols-3 lg:grid-cols-1 space-y-1">
         {/* Category one */}
-        <div className="flex  gap-[1px] items-center justify-between py-1 cursor-pointer hover:ps-1 transition-all hover:bg-gray-300 group">
-          <div className="inline-flex items-center">
-            <ManIcon style={{ fontSize: "1.6rem" }} />
-            <p>Mens Fashion</p>
-          </div>
-          <div className="hidden group-block">
-            <KeyboardArrowRightIcon />
-          </div>
+        <div className="flex  gap-[1px] items-center py-1 cursor-pointer hover:ps-1 transition-all hover:bg-gray-300">
+          <ManIcon style={{ fontSize: "1.6rem" }} />
+          <p>Mens Fashion</p>
         </div>
         {/* Category two */}
         <div className="flex  gap-[1px] items-center py-1 cursor-pointer hover:ps-1 transition-all hover:bg-gray-300">

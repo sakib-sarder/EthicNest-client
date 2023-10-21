@@ -9,6 +9,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 const SignUp = () => {
   const { createUser, updateUserInfo, setReload } = useContext(AuthContext);
 
+  const [error, setError] = useState("");
   const [showPass, setShowPass] = useState(false);
 
   const navigate = useNavigate();
@@ -28,7 +29,16 @@ const SignUp = () => {
           navigate(from, { replace: true });
           console.log(result);
         });
-      });
+      }).catch(error=>{
+        if (
+          error.code === "auth/email-already-in-use"
+        ) {
+          setError("This email is already in use");
+          return;
+        } else {
+          setError("");
+        }
+      })
     }
   };
 
@@ -73,6 +83,7 @@ const SignUp = () => {
               type="text"
               className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
               placeholder="John Doe"
+              required
             />
           </div>
           {/* Email */}
@@ -89,6 +100,7 @@ const SignUp = () => {
               type="email"
               className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
               placeholder="xyz@gmail.com"
+              required
             />
           </div>
           {/* Password */}
@@ -108,6 +120,7 @@ const SignUp = () => {
                 type={showPass ? "text" : "password"}
                 className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
                 placeholder="Enter Password"
+                required
               />
               <div
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-4 text-gray-600"
@@ -134,6 +147,7 @@ const SignUp = () => {
                 type={showPass ? "text" : "password"}
                 className="border-[1px] border-blue-400 block w-full py-1.5 px-2 focus:outline-none placeholder:text-gray-600 placeholder:tracking-wide tracking-wide rounded-[5px]"
                 placeholder="Enter Password"
+                required
               />
               <div
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-4 text-gray-600"
@@ -143,6 +157,7 @@ const SignUp = () => {
               </div>
             </div>
           </div>
+            {error && <span className="text-xs text-end text-red-500 font-semibold">{error}</span>}
           {/* Submit Button */}
           <div className="pt-3">
             <input

@@ -13,7 +13,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-console.log(user)
+  console.log(user);
   const handleLogout = () => {
     logOut()
       .then(() => {})
@@ -49,22 +49,34 @@ console.log(user)
           <div className="flex items-center gap-2">
             {user ? (
               <div className="relative group">
-                <button className="bg-[#1976D2] text-white px-[0.25rem] py-[0.25rem] rounded">
-                  <PersonIcon style={{ fontSize: "1.8rem" }} />
+                <button
+                  className={` text-white px-[0.25rem] py-[0.25rem] rounded ${
+                    user?.photoURL ? "" : "bg-[#1976D2]"
+                  }`}
+                >
+                  {user?.photoURL ? (
+                    <img src={user?.photoURL} className="w-[35px] border-[#1976D2] border-[2px]" />
+                  ) : (
+                    <PersonIcon style={{ fontSize: "1.8rem" }} />
+                  )}
                 </button>
-                <div className="opacity-0 invisible w-60 text-white text-center text-xs py-2 absolute z-10 right-24 top-[39px] transition-all duration-300 transform translate-x-1/2 group-hover:opacity-100 group-hover:visible border rounded-md bg-white">
+                {/* On hover menu */}
+                <div className="opacity-0 invisible w-60 text-white text-center text-xs py-2 absolute z-10 right-24 top-[45px] transition-all duration-300 transform translate-x-1/2 group-hover:opacity-100 group-hover:visible border rounded-b-md bg-white">
                   <div className="text-black py-1 text-[0.85rem] rounded-sm tracking-wider font-semibold p-1">
                     {/* On hover menu of avatar */}
                     <div>
                       {user.photoURL ? (
-                        <img src={user?.photoURL} className="w-16 rounded-full inline"/>
+                        <img
+                          src={user?.photoURL}
+                          className="w-16 rounded-full inline"
+                        />
                       ) : (
                         <PersonIcon
                           style={{ fontSize: "3rem" }}
                           className="border rounded-full p-1 mt-1"
                         />
                       )}
-                      
+
                       <div className="pt-1">
                         <p className="text-lg font-bold">{user?.displayName}</p>
                         <ul className="capitalize space-y-2.5 tracking-wider">
@@ -95,7 +107,7 @@ console.log(user)
                           <li className="avatar_menu">
                             <button className="flex items-center">
                               <SettingsIcon />
-                              <span className="">settings</span>
+                              <span className="">Settings</span>
                             </button>
                           </li>
                           <li className="avatar_menu" onClick={handleLogout}>
