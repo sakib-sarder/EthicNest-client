@@ -3,14 +3,14 @@ import Slider from "./Slider";
 
 const Banner = () => {
   return (
-    <div className="flex flex-row-reverse mt-2 gap-2">
-      <div className="w-3/4">
-        <Slider />
-      </div>
-      <div className="w-1/4">
+    <section className="flex flex-col-reverse lg:flex-row mt-2 gap-2">
+      <div className="lg:w-1/4">
         <Categories />
       </div>
-    </div>
+      <div className="lg:w-3/4">
+        <Slider />
+      </div>
+    </section>
   );
 };
 

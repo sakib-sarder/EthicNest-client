@@ -30,19 +30,19 @@ const Slider = () => {
         className="mySwiper"
       >
         <SwiperSlide className="pb-6">
-          <img src={img1} alt="" className="rounded"/>
+          <img src={img1} alt="" className="rounded lg:h-[43vh] w-full"/>
         </SwiperSlide>
         <SwiperSlide className="pb-6">
-          <img src={img2} alt="" className="rounded"/>
+          <img src={img2} alt="" className="rounded lg:h-[43vh] w-full"/>
         </SwiperSlide>
         <SwiperSlide className="pb-6">
-          <img src={img3} alt="" className="rounded"/>
+          <img src={img3} alt="" className="rounded lg:h-[43vh] w-full"/>
         </SwiperSlide>
         <SwiperSlide className="pb-6">
-          <img src={img4} alt="" className="rounded"/>
+          <img src={img4} alt="" className="rounded lg:h-[43vh] w-full"/>
         </SwiperSlide>
         <SwiperSlide className="pb-6">
-          <img src={img5} alt="" className="rounded"/>
+          <img src={img5} alt="" className="rounded lg:h-[43vh] w-full"/>
         </SwiperSlide>
       </Swiper>
     </div>
