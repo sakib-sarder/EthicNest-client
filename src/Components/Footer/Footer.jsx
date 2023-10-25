@@ -8,7 +8,7 @@ import RedditIcon from "@mui/icons-material/Reddit";
 const Footer = () => {
   return (
     <footer className="bg-[#BEDDFF] mt-2 py-3">
-      <div className="container mx-auto grid grid-cols-4 gap-1">
+      <div className="container mx-auto grid grid-cols-4 md:grid-cols-2 lg:grid-cols-5 gap-5">
         {/* Company name and info */}
         <div>
           <div>
@@ -46,9 +46,21 @@ const Footer = () => {
             <li><a href=""></a></li>
           </ul>
         </div>
+        {/* pickup points */}
+        <div className="">
+          <p className="text-2xl font-bold">Our Pickup Point</p>
+          <ul>
+            <li><a href="">Jatrabari</a></li>
+            <li><a href="">Wari</a></li>
+            <li><a href="">Rajsahi</a></li>
+            <li><a href="">Chittagong</a></li>
+            <li><a href=""></a></li>
+          </ul>
+        </div>
         {/* maps */}
         <div className="">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14608.03912029734!2d90.375862!3d23.74703065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b33cffc3fb%3A0x4a826f475fd312af!2sDhanmondi%2C%20Dhaka%201205!5e0!3m2!1sen!2sbd!4v1697975253566!5m2!1sen!2sbd" width="600" height="450" style={{border: "0px"}} allowfullscreen="" loading="lazy" />
+          <p className="text-2xl font-bold pb-1">Main Pickup Point</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14608.03912029734!2d90.375862!3d23.74703065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b33cffc3fb%3A0x4a826f475fd312af!2sDhanmondi%2C%20Dhaka%201205!5e0!3m2!1sen!2sbd!4v1697975253566!5m2!1sen!2sbd" className="w-full" allowfullscreen="" loading="lazy" />
         </div>
       </div>
     </footer>
