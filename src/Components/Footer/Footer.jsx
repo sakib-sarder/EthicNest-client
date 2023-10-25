@@ -47,14 +47,14 @@ const Footer = () => {
           </ul>
         </div>
         {/* pickup points */}
-        <div className="">
+        <div className="text-lg font-semibold">
           <p className="text-2xl font-bold">Our Pickup Point</p>
           <ul>
-            <li><a href="">Jatrabari</a></li>
-            <li><a href="">Wari</a></li>
-            <li><a href="">Rajsahi</a></li>
-            <li><a href="">Chittagong</a></li>
-            <li><a href=""></a></li>
+            <li className="hover:ps-2 transition-all duration-300"><a href="">Jatrabari</a></li>
+            <li className="hover:ps-2 transition-all duration-300"><a href="">Wari</a></li>
+            <li className="hover:ps-2 transition-all duration-300"><a href="">Rajsahi</a></li>
+            <li className="hover:ps-2 transition-all duration-300"><a href="">Chittagong</a></li>
+            <li className="hover:ps-2 transition-all duration-300"><a href=""></a></li>
           </ul>
         </div>
         {/* maps */}
