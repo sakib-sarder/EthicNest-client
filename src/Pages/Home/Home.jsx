@@ -1,3 +1,4 @@
+import Map from "../../Components/Map/Map";
 import Banner from "./Banner/Banner";
 import Features from "./Features/Features";
 
@@ -6,6 +7,7 @@ const Home = () => {
     <div className="space-y-4">
       <Banner />
       <Features />
+      <Map/>
     </div>
   );
 };
