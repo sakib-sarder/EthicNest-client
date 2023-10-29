@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 .logo_font {
+  color: #fff;
   font-family: "Pacifico", cursive;
 }
 
