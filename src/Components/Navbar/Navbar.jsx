@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <>
       {/* Large Device laptop or avobe */}
-      <nav className="bg-[#BEDDFF] py-1.5 px-2 md:py-0">
+      <nav className="bg-[#7f3ed4] py-1.5 px-2 md:py-0">
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <div>
